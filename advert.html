@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+
+<head>
+    <!-- CSS styles -->
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
+    <link href="/style/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="/style/font-awesome.min.css" rel="stylesheet">
+    <link href="/style/common.css" rel="stylesheet">
+    <link href="/style/ekko-lightbox.min.css" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/style/images/favicon.ico">
+    <!--Meta tags-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>
+    <title></title>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!--Header start-->
+        <header id="header"></header>
+        <!--Header end-->
+        <!--Content start-->
+        <div id="content">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="title"></h1>
+                </div>
+                <div class="adv-info hidden">
+                    <span class="adv-date"></span>&nbsp;-
+                    <span class="adv-author"></span>&nbsp;-
+                    <span class="adv-comments"></span>&nbsp;-
+                    <script type="text/javascript">
+                        document.write(VK.Share.button({
+                            url: window.location.href,
+                            image: 'http://noticeboard.url.ph/style/images/logo.png',
+                            title: document.title,
+                        }, {
+                            type: 'custom',
+                            text: '<i class="fa fa-vk fa-lg sm-link"></i>'
+                        }));
+                    </script>
+                    <a class='twitter popup'>
+                        <i class="fa fa-twitter fa-lg sm-link"></i>
+                    </a>
+                    <a class='google popup'>
+                        <i class="fa fa-google-plus fa-lg sm-link"></i>
+                    </a>
+                </div>
+                <div class="container">
+                    <div class="loader"></div>
+                    <div class="row hidden" id="full-advert">
+                        <div class="col-md-3">
+                            <div class="adv-img">
+                            </div>
+                            <div class="adv-tags">
+                                <i class="fa fa-tags fa-lg"></i>&nbsp;
+                            </div>
+                        </div>
+                        <!--end of col-md-3-->
+                        <div class="col-md-9">
+                            <div class="adv-text">
+                            </div>
+                            <div class="adv-comments-block">
+                                <h2>Коментарі:</h2>
+                                <div id="login-alert"></div>
+                                <div class="add-comment">
+                                    <form method="POST" id="add-comment-form" onsubmit="framework.addComment(advertId,this); return false;">
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <input type="text" name="text" class="form-control" placeholder="Введіть текст коментаря..." maxlength="300" required>
+                                            </div>
+                                        </div>
+                                        <button id="comment-submit" class="btn btn-default btn-info" type="submit">Додати</button>
+                                    </form>
+                                </div>
+                                <div class="adv-comments-list">
+                                </div>
+                                <div class="load-more hidden">
+                                    <button class="btn btn-link" id="load-more">
+                                        <i class="fa fa-refresh fa-lg"></i>&nbsp;Більше коментарів</button>
+                                </div>
+                            </div>
+                            <!--Eng of adv-comments-->
+                        </div>
+                        <!--end of col-md-9-->
+                    </div>
+                </div>
+                <!--end of conainer-->
+            </div>
+            <!--end of the first container-->
+        </div>
+        <!--Content end-->
+    </div>
+    <!--Footer start-->
+    <footer id="footer"></footer>
+    <!--Footer end-->
+    <!--Javascript Files-->
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="/js/framework.js" type="text/javascript"></script>
+    <script src="/js/validation.js" type="text/javascript"></script>
+    <script src="/js/ekko-lightbox.min.js" type="text/javascript"></script>
+    <!--Inline Javascript Code-->
+    <script>
+        $(window).load(function () {
+            var url = window.location.href;
+            var array = url.split("/");
+            advertId = array[array.length - 2];
+            framework.showFullAdvert(advertId);
+            var clicks = 0;
+            $("#load-more").click(function () {
+                clicks++;
+                framework.showAllComments(advertId, clicks);
+            });
+            $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
+                event.preventDefault();
+                return $(this).ekkoLightbox({
+                    always_show_close: true
+                });
+            });
+            $('.google').attr('href', "https://plus.google.com/share?url=" + encodeURI(window.location.href));
+            $('.twitter').attr('href', 'http://twitter.com/share?url=' + encodeURI(window.location.href) + '&text=Дошка оголошень кафедри ПЗАС');
+            $('.popup').click(function (event) {
+                var width = 575,
+                    height = 400,
+                    left = ($(window).width() - width) / 2,
+                    top = ($(window).height() - height) / 2,
+                    url = this.href,
+                    opts = 'status=1' +
+                    ',width=' + width +
+                    ',height=' + height +
+                    ',top=' + top +
+                    ',left=' + left;
+                window.open(url, 'Share', opts);
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+
+<head>
+    <!-- CSS styles -->
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
+    <link href="/style/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="/style/font-awesome.min.css" rel="stylesheet">
+    <link href="/style/common.css" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/style/images/favicon.ico">
+    <!--Meta tags-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Користувачі</title>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!--Header start-->
+        <header id="header"></header>
+        <!--Header end-->
+        <!--Content start-->
+        <div id="content">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="title">Адміністрування користувачів</h1>
+                </div>
+                <div class="admin-users">
+                    <ul class="nav nav-tabs" id="admin-user-tabs">
+                        <li class="active"><a href="#users">Користувачі</a>
+                        </li>
+                        <li><a href="#messages">Заявки користувачів</a>
+                        </li>
+                    </ul>
+                    <div id="user-tabs-content" class="tab-content">
+                        <div class="tab-pane active" id="users">
+                            <form id="user-control-form">
+                                <div class="table-responsive">
+                                    <table id="users-table" class="table">
+                                        <thead>
+                                            <th>Аватар</th>
+                                            <th>Логін</th>
+                                            <th>Електронна адреса</th>
+                                            <th>Статус</th>
+                                            <th>Дія</th>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </form>
+                            <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Видалити</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Ви впевнені, що хочете видалити користувача?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" id="btn-yes">Так</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Ні</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Edit user modal dialog-->
+                            <div id="edit-user-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModal">Змінити статус користувача</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label for="edit-user-role" class="control-label">Оберіть новий статус</label>
+                                            <select id="edit-user-role" class="form-control" name="edit-user-role">
+                                                <option value="1">Користувач</option>
+                                                <option value="2">Адміністратор</option>
+                                                <option value="3">Студент ПЗАС</option>
+                                                <option value="4">Викладач ПЗАС</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" id="btn-edit">Редагувати</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Скасувати</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="messages">
+                            <form id="user-notification-form">
+                                <div class="table-responsive">
+                                    <table id="users-notification-table" class="table">
+                                        <thead>
+                                            <th>Аватар</th>
+                                            <th>Логін</th>
+                                            <th>П.І.Б.</th>
+                                            <th>Заявка</th>
+                                            <th>Підтвердити</th>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--end of conainer-->
+            </div>
+            <!--end of the first container-->
+        </div>
+        <!--Content end-->
+    </div>
+    <!--Footer start-->
+    <footer id="footer"></footer>
+    <!--Footer end-->
+    <!--Javascript Files-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="/js/framework.js" type="text/javascript"></script>
+    <script src="/js/validation.js" type="text/javascript"></script>
+    <script>
+        $('#admin-user-tabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+        $('#btn-yes').click(function () {
+            var id = $('#delete-modal').data('id');
+            framework.deleteSelectedUser(id);
+            $('#delete-modal').modal('hide');
+        });
+        $('#btn-edit').click(function () {
+            var userId = $('#edit-user-modal').data('id');
+            var roleId = $("#edit-user").find(":selected").val();
+            framework.editSelectedUser(userId, roleId);
+            $('#edit-user-modal').modal('hide');
+        });
+    </script>
+</body>
+
+</html>

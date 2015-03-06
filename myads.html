@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+
+<head>
+    <!-- CSS styles -->
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
+    <link href="/style/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="/style/font-awesome.min.css" rel="stylesheet">
+    <link href="/style/common.css" rel="stylesheet">
+    <link href="/style/bootstrap-wysihtml5.css" rel="stylesheet">
+    <link href="/style/bootstrap-tagsinput.css" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/style/images/favicon.ico">
+    <!--Meta tags-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Мої оголошення</title>
+    <!--Javascript Files-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="/js/framework.js" type="text/javascript"></script>
+    <script src="/js/validation.js" type="text/javascript"></script>
+    <script src="/js/wysihtml5-0.3.0.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap3-wysihtml5.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap-tagsinput.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!--Header start-->
+        <header id="header"></header>
+        <!--Header end-->
+        <!--Content start-->
+        <div id="content">
+            <div class="container">
+                <div class="page-header">
+                    <h1> Мої оголошення</h1>
+                </div>
+                <div id="user-ads"></div>
+                <!--end of conainer-->
+            </div>
+            <!--Delete modal dialog-->
+            <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="deleteModal">Видалити</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Ви впевнені, що хочете видалити оголошення?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btn-yes">Так</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Ні</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Edit modal dialog-->
+            <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="editModal">Редагувати оголошення</h4>
+                        </div>
+                        <form id="edit-advert" action="#" method="post">
+                            <div class="modal-body">
+                                <input type="hidden" id="edit-advert-id" name="edit-advert-id">
+                                <div class="form-group">
+                                    <label for="edit-title" class="control-label">Заголовок</label>
+                                    <input type="text" id="edit-title" name="edit-title" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-text" class="control-label">Текст оголошення</label>
+                                    <textarea id="edit-text" name="edit-text" class="form-control" rows="5"></textarea>
+                                    <script type="text/javascript">
+                                        $("#edit-text").wysihtml5();
+                                    </script>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add-category" class="control-label">Категорія</label>
+                                    <select id="add-category" class="form-control" name="add-category">
+                                    </select>
+                                </div>
+                                <label>Переглядати оголошення зможуть</label>
+                                <div class="form-group">
+                                    <label class="radio-inline" id="add-role-all">
+                                        <input type="radio" name="add-role" value="1" checked>Всі відвідувачі
+                                    </label>
+                                    <label class="radio-inline" id="add-role-pzas">
+                                        <input type="radio" name="add-role" value="2">Студенти та викладачі кафедри ПЗАС</label>
+                                    <label class="radio-inline" id="add-role-students">
+                                        <input type="radio" name="add-role" value="3">Лише студенти кафедри ПЗАС
+                                    </label>
+                                    <label class="radio-inline" id="add-role-teachers">
+                                        <input type="radio" name="add-role" value="4">Лише викладачі кафедри ПЗАС
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-image">Картинка</label>
+                                    <div class="row">
+                                        <div class="col-sm-10 edit-col-input">
+                                            <input type="file" id="edit-image" name="edit-image">
+                                            <p class="help-block">Максимальний розмір 2 мегабайти</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-tags" style="display: block;">Теги</label>
+                                    <input type="text" id="edit-tags" name="edit-tags" class="form-control" value="" data-role="tagsinput" placeholder="Щоб додати тег натисніть Enter">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" id="btn-edit">Редагувати</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Скасувати</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--end of the first container-->
+        </div>
+        <!--Content end-->
+    </div>
+    <!--Footer start-->
+    <footer id="footer"></footer>
+    <!--Footer end-->
+    <script>
+        $('#btn-yes').click(function () {
+            var id = $('#delete-modal').data('id');
+            framework.deleteSelectedAdvert(id);
+            $('#delete-modal').modal('hide');
+        });
+    </script>
+</body>
+
+</html>

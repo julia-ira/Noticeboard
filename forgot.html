@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+
+<head>
+    <!-- CSS styles -->
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
+    <link href="/style/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="/style/font-awesome.min.css" rel="stylesheet">
+    <link href="/style/common.css" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/style/images/favicon.ico">
+    <!--Meta tags-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Відновлення паролю</title>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!--Header start-->
+        <header id="header"></header>
+        <!--Header end-->
+        <!--Content start-->
+        <div id="content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Відновлення персональних даних</h1>
+                </div>
+                <div class="container">
+                    <form id="forgot-form" class="form-inline" role="form" method="POST" action="/php/resetPassword.php" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                        <div class="form-group">
+                            <input type="email" id="forgot" name="forgot-email" class="form-control" placeholder="Введіть електронну адресу" required data-bv-notempty-message="Заповніть поле" data-bv-emailaddress-message="Введена неіснуюча електронна адреса">
+                        </div>
+                        <button type="submit" class="btn btn-info">Надіслати</button>
+                    </form>
+                </div>
+            </div>
+            <!--end of the first container-->
+        </div>
+    </div>
+    <!--Content end-->
+    </div>
+    <!--Footer start-->
+    <footer id="footer"></footer>
+    <!--Footer end-->
+    <!--Javascript Files-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="/js/framework.js" type="text/javascript"></script>
+    <script src="/js/validation.js" type="text/javascript"></script>
+</body>
+
+</html>

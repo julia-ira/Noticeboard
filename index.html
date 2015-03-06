@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+
+<head>
+    <!-- CSS styles -->
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
+    <link href="/style/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="/style/font-awesome.min.css" rel="stylesheet">
+    <link href="/style/common.css" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/style/images/favicon.ico">
+    <!--Meta tags-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Кафедра ПЗАС</title>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!--Header start-->
+        <header id="header"></header>
+        <!--Header end-->
+        <!--Content start-->
+        <div id="content">
+            <div class="container-fluid">
+                <div class="page-header">
+                    <h1>Дошка оголошень кафедри ПЗАС</h1>
+                </div>
+                <div class="row-fluid content-ads">
+                </div>
+                <div class="loader"></div>
+            </div>
+            <div class="container load-more hidden">
+                <button class="btn btn-link btn-lg" id="load-more">
+                    <i class="fa fa-refresh fa-lg"></i>&nbsp;Більше оголошень</button>
+            </div>
+        </div>
+        <!--Content end-->
+    </div>
+    <!--Main-wrapper end-->
+    <!--Footer start-->
+    <footer id="footer"></footer>
+    <!--Footer end-->
+    <!--Javascript Files-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="/js/framework.js" type="text/javascript"></script>
+    <script src="/js/validation.js" type="text/javascript"></script>
+    <script>
+        $(window).load(function () {
+            var e = $("#categories option:selected").val();
+            var t = 0;
+            $("#load-more").click(function () {
+                t++;
+                if (e === "0") {
+                    framework.showAllAdverts(t)
+                } else {
+                    framework.showAllAdvertsByCategory(e, t)
+                }
+            });
+            $("#categories").change(function () {
+                $(".content-ads").empty();
+                t = 0;
+                e = $("#categories option:selected").val();
+                if (e === "0") {
+                    framework.showAllAdverts(0)
+                } else {
+                    framework.showAllAdvertsByCategory(e, 0)
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>

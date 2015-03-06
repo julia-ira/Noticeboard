@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+
+<head>
+    <!-- CSS styles -->
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
+    <link href="/style/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="/style/font-awesome.min.css" rel="stylesheet">
+    <link href="/style/common.css" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/style/images/favicon.ico">
+    <!--Meta tags-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Оголошення користувачів</title>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!--Header start-->
+        <header id="header"></header>
+        <!--Header end-->
+        <!--Content start-->
+        <div id="content">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="title">Адміністрування оголошень</h1>
+                </div>
+                <div id="admin-user-ads"></div>
+                <!--end of conainer-->
+            </div>
+            <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Видалити</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Ви впевнені, що хочете видалити оголошення?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btn-yes">Так</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Ні</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end of the first container-->
+        </div>
+        <!--Content end-->
+    </div>
+    <!--Footer start-->
+    <footer id="footer"></footer>
+    <!--Footer end-->
+    <!--Javascript Files-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="/js/framework.js" type="text/javascript"></script>
+    <script src="/js/validation.js" type="text/javascript"></script>
+    <script>
+        $('#btn-yes').click(function () {
+            var id = $('#delete-modal').data('id');
+            framework.deleteSelectedAdvert(id);
+            $('#delete-modal').modal('hide');
+        });
+    </script>
+</body>
+
+</html>

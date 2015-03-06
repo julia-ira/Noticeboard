@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+
+<head>
+    <!-- CSS styles -->
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
+    <link href="/style/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="/style/font-awesome.min.css" rel="stylesheet">
+    <link href="/style/common.css" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/style/images/favicon.ico">
+    <!--Meta tags-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Налаштування</title>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!--Header start-->
+        <header id="header"></header>
+        <!--Header end-->
+        <!--Content start-->
+        <div id="content">
+            <div class="container" id="user-settings">
+                <div class="page-header">
+                    <h1 class="title">Налаштування профілю</h1>
+                </div>
+                <div class="container">
+                    <form id="change-role-form" class="form-inline" role="form" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                        <h3>Змінити права користувача</h3>
+                        <div class="row">
+                            <div id='send-request-alert' class="col-sm-10"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <p class="help-block">Якщо Ви студент або викладач кафедри ПЗАС, то у Вас є можливість приєднатися до об'єднання інших студентів та викладачів. Для цього Вам необхідно лише надіслати заявку адміністратору. У випадку, якщо Ви не маєте відношення до кафедри ПЗАС, Вашу заявку буде відхилено.</p>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="user-surname" name="user-surname" placeholder="П. І. Б." size="50" required data-bv-notempty-message="Це поле є обов'язковим">
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="user-role" name="user-role">
+                                        <option value="3">Студент ПЗАС</option>
+                                        <option value="4">Викладач ПЗАС</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info">Надіслати</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="change-info-form" class="form-horizontal" role="form" method="POST" action="/php/changeUserData.php" enctype="multipart/form-data">
+                        <h3>Змінити особисті дані</h3>
+                        <div class="form-group">
+                            <label for="change-pic" class="col-sm-2 control-label">Аватар</label>
+                            <div class="col-sm-2">
+                                <img src="" alt="avatar" class="img-circle" id="change-avatar">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="file" id="change-pic" name="change-pic">
+                                <p class="help-block">Максимальний розмір 2 мегабайти</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="change-login" class="col-sm-2 control-label">Логін</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="change-login" name="change-login">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="change-email" class="col-sm-2 control-label">Ел. адреса</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="change-email" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <button type="submit" class="btn btn-info">Зберегти</button>
+                                <a class="btn btn-default" href="/">Скасувати</a>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="change-pass-form" class="form-horizontal" role="form">
+                        <h3>Змінити пароль</h3>
+                        <div class="row">
+                            <div id='change-pass-alert' class="col-sm-10"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="current-pass" class="col-sm-2 control-label">Поточний пароль</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="current-pass" name="current-pass">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-pass" class="col-sm-2 control-label">Новий пароль</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="new-pass" name="new-pass">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-pass-repeat" class="col-sm-2 control-label">Повторіть</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="new-pass-repeat" name="new-pass-repeat">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <button type="submit" class="btn btn-info">Зберегти</button>
+                                <a class="btn btn-default" href="/">Скасувати</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--end of conainer-->
+            </div>
+            <!--end of the first container-->
+        </div>
+        <!--Content end-->
+    </div>
+    <!--Footer start-->
+    <footer id="footer"></footer>
+    <!--Footer end-->
+    <!--Javascript Files-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="/js/framework.js" type="text/javascript"></script>
+    <script src="/js/validation.js" type="text/javascript"></script>
+</body>
+
+</html>
